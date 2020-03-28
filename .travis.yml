@@ -13,7 +13,10 @@ after_success:
   - docker build -t unclebae/multi-server ./server
   - docker build -t unclebae/multi-worker ./worker 
   # Login in to the docker CLI 
-  
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"
   # Take those images and push them to docker hub 
-
-
+  - docker push unclebae/multi-client
+  - docker push unclebae/multi-nginx
+  - docker push unclebae/multi-server
+  - docker push unclebae/multi-worker
+  
